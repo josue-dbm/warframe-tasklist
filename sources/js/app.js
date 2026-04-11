@@ -876,6 +876,8 @@ function handleResetConfirmation(buttonElement, confirmKey, defaultText, resetAc
 
 function resetAllAction() {
     checklistData.progress = {};
+    checklistData.customTasks.daily.forEach(t => { checklistData.progress[t.id] = false; });
+    checklistData.customTasks.weekly.forEach(t => { checklistData.progress[t.id] = false; });
     localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(checklistData));
 
     const allCheckboxes = document.querySelectorAll('#checklist-container input[type="checkbox"]');
@@ -899,11 +901,11 @@ function resetSection(section) {
     }
     let taskList, sectionElement, sectionElementId;
     if (section === "daily") {
-        taskList = tasks.daily;
+        taskList = [...tasks.daily, ...checklistData.customTasks.daily];
         sectionElement = dailyList;
         sectionElementId = 'daily-tasks-section';
     } else if (section === "weekly") {
-        taskList = tasks.weekly;
+        taskList = [...tasks.weekly, ...checklistData.customTasks.weekly];
         sectionElement = weeklyList;
         sectionElementId = 'weekly-tasks-section';
     }
@@ -964,13 +966,15 @@ function toggleMenu() {
 function unhideAllAction() {
     checklistData.hiddenTasks = {};
     checklistData.manuallyHiddenSections = {};
+    checklistData.customTasks.daily.forEach(t => { delete checklistData.hiddenTasks[t.id]; });
+    checklistData.customTasks.weekly.forEach(t => { delete checklistData.hiddenTasks[t.id]; });
     saveData(false);
 
     document.querySelectorAll('.task-item.hidden-task').forEach(item => item.classList.remove('hidden-task'));
     document.querySelectorAll('section.section-is-hidden-by-user').forEach(section => section.classList.remove('section-is-hidden-by-user'));
 
-    populateSection(dailyList, tasks.daily, checklistData.progress);
-    populateSection(weeklyList, tasks.weekly, checklistData.progress);
+    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress);
+    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress);
     populateSection(otherList, tasks.other, checklistData.progress);
     ['daily-tasks-section', 'weekly-tasks-section', 'other-tasks-section'].forEach(updateSectionControls);
     console.log("All tasks and sections unhidden.");
