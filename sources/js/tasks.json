@@ -2,39 +2,39 @@
     "daily": [
         {
             "id": "daily_login",
-            "text": "Log in: Collect the daily login reward.",
+            "text": "Connexion : Récupérer la récompense de connexion quotidienne.",
             "icon": "LotusFlower.png"
         },
         {
             "id": "daily_craft_forma",
-            "text": "Crafting (Forma): Start building a new Forma (and collect finished ones).",
+            "text": "Fabrication (Forma) : Lancer la construction d'un nouveau Forma (et récupérer ceux terminés).",
             "icon": "IconBuild.png",
-            "location": "Base of Operations",
-            "terminal": "Foundry"
+            "location": "Base d'opérations",
+            "terminal": "Fonderie"
         },
         {
             "id": "daily_craft_other",
-            "text": "Crafting (Other): Craft other daily resources/items using reusable blueprints (check Foundry/companion app).",
+            "text": "Fabrication (Autre) : Fabriquer d'autres ressources/objets quotidiens avec des blueprints réutilisables (vérifier la Fonderie ou l'appli compagnon).",
             "icon": "IconBuild.png",
-            "location": "Base of Operations",
-            "terminal": "Foundry"
+            "location": "Base d'opérations",
+            "terminal": "Fonderie"
         },
         {
             "id": "daily_syndicate_gain",
-            "text": "Faction Syndicates: Gain daily standing cap with your pledged Syndicate(s).",
+            "text": "Syndicats de faction : Atteindre le plafond de réputation quotidien avec vos Syndicat(s) pledgés.",
             "icon": "ReputationSmall.png",
-            "info": "Gain affinity in any mission to increase faction standing"
+            "info": "Gagnez de l'affinité dans n'importe quelle mission pour augmenter la réputation de faction"
         },
         {
             "id": "daily_syndicate_spend",
-            "text": "Faction Syndicates: If maxed on standing, spend it (Relic packs, Vosfor packs, etc.).",
+            "text": "Syndicats de faction : Si la réputation est pleine, la dépenser (packs de Reliques, packs de Vosfor, etc.).",
             "icon": "ReputationSmall.png",
-            "location": "Base of Operations/Any Relay",
-            "terminal": "Syndicates"
+            "location": "Base d'opérations/N'importe quel Relais",
+            "terminal": "Syndicats"
         },
         {
             "id": "daily_world_syndicate_parent",
-            "text": "World Syndicates (Standing)",
+            "text": "Syndicats de monde (Réputation)",
             "icon": "ReputationSmall.png",
             "isParent": true,
             "subtasks": [
@@ -42,135 +42,135 @@
                     "id": "daily_world_syndicate_simaris",
                     "text": "Cephalon Simaris",
                     "icon": "syndicates/IconSimaris.png",
-                    "location": "Any Relay"
+                    "location": "N'importe quel Relais"
                 },
                 {
                     "id": "daily_world_syndicate_ostron",
                     "text": "Ostron",
                     "icon": "syndicates/IconCetusElder.png",
-                    "location": "Cetus, Earth",
-                    "prereq": "Saya's Vigil"
+                    "location": "Cetus, Terre",
+                    "prereq": "La Vigile de Saya"
                 },
                 {
                     "id": "daily_world_syndicate_quills",
-                    "text": "The Quills",
+                    "text": "Les Plumes",
                     "icon": "syndicates/TheQuillsSigil.png",
-                    "location": "Cetus, Earth",
-                    "prereq": "The War Within"
+                    "location": "Cetus, Terre",
+                    "prereq": "La Guerre Intérieure"
                 },
                 {
                     "id": "daily_world_syndicate_solaris",
-                    "text": "Solaris United",
+                    "text": "Solaris Unis",
                     "icon": "syndicates/SolarisUnited1.png",
-                    "location": "Fortuna, Venus",
-                    "prereq": "Vox Solaris (Quest)"
+                    "location": "Fortuna, Vénus",
+                    "prereq": "Vox Solaris (Quête)"
                 },
                 {
                     "id": "daily_world_syndicate_vox",
                     "text": "Vox Solaris",
                     "icon": "syndicates/IconSolaris.png",
-                    "location": "Fortuna, Venus",
-                    "prereq": "The War Within"
+                    "location": "Fortuna, Vénus",
+                    "prereq": "La Guerre Intérieure"
                 },
                 {
                     "id": "daily_world_syndicate_ventkids",
                     "text": "Ventkids",
                     "icon": "syndicates/FactionVentKidz.png",
-                    "location": "Fortuna, Venus",
-                    "prereq": "Vox Solaris (Quest)"
+                    "location": "Fortuna, Vénus",
+                    "prereq": "Vox Solaris (Quête)"
                 },
                 {
                     "id": "daily_world_syndicate_entrati",
                     "text": "Entrati",
                     "icon": "syndicates/IconEntrati.png",
                     "location": "Necralisk, Deimos",
-                    "prereq": "Heart of Deimos"
+                    "prereq": "Cœur de Deimos"
                 },
                 {
                     "id": "daily_world_syndicate_necraloid",
                     "text": "Necraloid",
                     "icon": "syndicates/Loid.png",
                     "location": "Necralisk, Deimos",
-                    "prereq": "The War Within"
+                    "prereq": "La Guerre Intérieure"
                 },
                 {
                     "id": "daily_world_syndicate_holdfasts",
-                    "text": "The Holdfasts",
+                    "text": "Les Bastions",
                     "icon": "syndicates/TheHoldfastsIcon.png",
                     "location": "Chrysalith, Zariman",
-                    "prereq": "Angels of the Zariman"
+                    "prereq": "Les Anges du Zariman"
                 },
                 {
                     "id": "daily_world_syndicate_cavia",
                     "text": "Cavia",
                     "icon": "syndicates/FactionSigilCavia.png",
                     "location": "Sanctum Anatomica, Deimos",
-                    "prereq": "Whispers in the Walls"
+                    "prereq": "Murmures dans les Murs"
                 },
                 {
                     "id": "daily_world_syndicate_hex",
-                    "text": "The Hex",
+                    "text": "Le Hex",
                     "icon": "syndicates/HexIcon.png",
                     "location": "Höllvania Central Mall",
-                    "prereq": "The Hex (Quest)"
+                    "prereq": "Le Hex (Quête)"
                 }
             ]
         },
         {
             "id": "daily_dark_sector",
-            "text": "Dark Sector Mission (Early Game): Complete one Dark Sector mission first for double credits (if needed & pre-Index).",
+            "text": "Mission Secteur Sombre (Début de jeu) : Compléter une mission Secteur Sombre en premier pour doubler les crédits (si nécessaire et avant l'Index).",
             "icon": "IconInfested.png",
-            "location": "Base of Operations",
+            "location": "Base d'opérations",
             "terminal": "Navigation"
         },
         {
             "id": "daily_sortie",
-            "text": "Sortie: Complete the 3 daily Sortie missions.",
+            "text": "Sortie : Compléter les 3 missions de Sortie quotidiennes.",
             "icon": "Sortie.png",
-            "location": "Base of Operations",
+            "location": "Base d'opérations",
             "terminal": "Navigation",
-            "prereq": "The War Within"
+            "prereq": "La Guerre Intérieure"
         },
         {
             "id": "daily_focus",
-            "text": "Focus: Max out daily Focus gain (e.g., via Sanctuary Onslaught).",
+            "text": "Focus : Atteindre le plafond de Focus quotidien (ex : via l'Assaut du Sanctuaire).",
             "icon": "FocusLensFocus.png",
-            "prereq": "The Second Dream"
+            "prereq": "Le Second Rêve"
         },
         {
             "id": "daily_steel_path",
-            "text": "Steel Path Incursions: Complete daily Steel Path missions for Steel Essence.",
+            "text": "Incursions Chemin d'Acier : Compléter les missions quotidiennes du Chemin d'Acier pour obtenir de l'Essence d'Acier.",
             "icon": "SteelEssenceIcon.png",
-            "prereq": "Steel Path unlocked"
+            "prereq": "Chemin d'Acier débloqué"
         },
         {
             "id": "daily_vendors",
-            "text": "Vendors",
+            "text": "Vendeurs",
             "icon": "Market.png",
             "isParent": true,
             "subtasks": [
                 {
                     "id": "daily_acrithis",
-                    "text": "Acrithis: Check daily Arcane and Captura offering.",
+                    "text": "Acrithis : Vérifier l'offre quotidienne d'Arcanes et de Captura.",
                     "icon": "Acrithis.png",
                     "location": "Duviri/Dormizone",
                     "npc": "Acrithis"
                 },
                 {
                     "id": "daily_ticker_crew",
-                    "text": "Ticker: Check available railjack crew to hire.",
+                    "text": "Ticker : Vérifier les membres d'équipage Railjack disponibles à recruter.",
                     "icon": "IconCommand.png",
-                    "location": "Fortuna, Venus",
+                    "location": "Fortuna, Vénus",
                     "npc": "Ticker",
-                    "prereq": "Rising Tide & Command Intrinsics 1"
+                    "prereq": "Marée Montante & Commandement Intrinsèque 1"
                 },
                 {
                     "id": "daily_marie",
-                    "text": "Marie: Purchase Operator and amp mods.",
+                    "text": "Marie : Acheter des mods Opérateur et amp.",
                     "icon": "Wisp.png",
                     "location": "La Cathédrale (Sanctum Anatomica, Deimos)",
                     "npc": "Marie",
-                    "prereq": "The Old Peace"
+                    "prereq": "La Vieille Paix"
                 }
             ]
         }
@@ -178,179 +178,179 @@
     "weekly": [
         {
             "id": "weekly_nightwave_complete",
-            "text": "Nightwave: Complete relevant weekly Nightwave missions.",
+            "text": "Nightwave : Compléter les missions Nightwave hebdomadaires pertinentes.",
             "icon": "NightwaveIconSimple.png"
         },
         {
             "id": "weekly_nightwave_spend",
-            "text": "Nightwave (Spend): Spend Nightwave credits if needed (Aura mods, Catalysts/Reactors, etc.).",
+            "text": "Nightwave (Dépenser) : Dépenser les crédits Nightwave si nécessaire (mods d'Aura, Catalyseurs/Réacteurs, etc.).",
             "icon": "NightwaveIconSimple.png"
         },
         {
             "id": "weekly_ayatan",
-            "text": "Ayatan Treasure Hunt: Complete Maroo's weekly mission for an Ayatan Sculpture",
+            "text": "Chasse au Trésor Ayatan : Compléter la mission hebdomadaire de Maroo pour obtenir une Sculpture Ayatan.",
             "icon": "Maroo.png",
-            "location": "Maroo's Bazaar, Mars",
+            "location": "Bazar de Maroo, Mars",
             "npc": "Maroo"
         },
         {
             "id": "weekly_clem",
-            "text": "Help Clem: Help Clem with his weekly survival, or he will die.",
+            "text": "Aider Clem : Aider Clem dans sa survie hebdomadaire, sinon il mourra.",
             "icon": "HelpClem_.png",
-            "location": "Any Relay",
+            "location": "N'importe quel Relais",
             "npc": "Darvo",
-            "prereq": "A Man of Few Words"
+            "prereq": "Un Homme de Peu de Mots"
         },
         {
             "id": "weekly_kahl_garrison",
-            "text": "Break Narmer: Complete Kahl's weekly mission for Stock.",
+            "text": "Briser Narmer : Compléter la mission hebdomadaire de Kahl pour obtenir du Stock.",
             "icon": "GarrisonIcon.png",
-            "location": "Drifter's Camp, Earth",
+            "location": "Camp du Drifter, Terre",
             "npc": "Kahl",
-            "prereq": "Veilbreaker"
+            "prereq": "Briseur de Voile"
         },
         {
             "id": "weekly_archon_hunt",
-            "text": "Archon Hunt: Complete the weekly Archon Hunt for a guaranteed Archon Shard.",
+            "text": "Chasse à l'Archonte : Compléter la Chasse à l'Archonte hebdomadaire pour un Éclat d'Archonte garanti.",
             "icon": "IconNarmer.png",
-            "location": "Base of Operations",
+            "location": "Base d'opérations",
             "terminal": "Navigation",
-            "prereq": "The New War"
+            "prereq": "La Nouvelle Guerre"
         },
         {
             "id": "weekly_duviri_circuit",
-            "text": "Duviri Circuit (Normal): Check weekly Warframe options & run Circuit if desired.",
+            "text": "Circuit Duviri (Normal) : Vérifier les options de Warframe hebdomadaires et faire le Circuit si souhaité.",
             "icon": "IconDuviriCategory256.png",
-            "location": "Base of Operations/Dormizone",
+            "location": "Base d'opérations/Dormizone",
             "terminal": "Navigation",
-            "prereq": "The Duviri Paradox"
+            "prereq": "Le Paradoxe Duviri"
         },
         {
             "id": "weekly_duviri_circuit_sp",
-            "text": "Duviri Circuit (Steel Path): Check weekly Incarnon Adapters & run Circuit if desired.",
+            "text": "Circuit Duviri (Chemin d'Acier) : Vérifier les Adaptateurs Incarnon hebdomadaires et faire le Circuit si souhaité.",
             "icon": "IconDuviriCategory256.png",
-            "location": "Base of Operations/Dormizone",
+            "location": "Base d'opérations/Dormizone",
             "terminal": "Navigation",
-            "prereq": "Steel Path unlocked & The Duviri Paradox"
+            "prereq": "Chemin d'Acier débloqué & Le Paradoxe Duviri"
         },
         {
             "id": "weekly_search_pulses",
-            "text": "Search Pulses: Use 5 weekly search pulses on Netracells and Archimedeas.",
+            "text": "Impulsions de Recherche : Utiliser les 5 impulsions hebdomadaires sur les Netracells et Archimedeas.",
             "icon": "MagnifyingGlassIcon.png",
             "isParent": true,
             "subtasks": [
                 {
                     "id": "weekly_netracells",
-                    "text": "Netracells: Complete up to 5 weekly Netracell missions for Archon Shard chances.",
+                    "text": "Netracells : Compléter jusqu'à 5 missions Netracell hebdomadaires pour des chances d'obtenir des Éclats d'Archonte.",
                     "icon": "NetraRequiemIcon.png",
                     "location": "Sanctum Anatomica, Deimos",
                     "npc": "Tagfer",
-                    "prereq": "Whispers in the Walls",
-                    "info": "Costs 1 Search Pulse per successful mission"
+                    "prereq": "Murmures dans les Murs",
+                    "info": "Coûte 1 Impulsion de Recherche par mission réussie"
                 },
                 {
                     "id": "weekly_eda",
-                    "text": "Elite Deep Archimedea: Attempt weekly Elite Deep Archimedea for high Archon Shard chances (very endgame)",
+                    "text": "Archimedea Profonde Élite : Tenter l'Archimedea Profonde Élite hebdomadaire pour de grandes chances d'Éclats d'Archonte (très haut niveau).",
                     "icon": "Necraloid.png",
                     "location": "Sanctum Anatomica, Deimos",
                     "npc": "Necraloid",
-                    "prereq": "Rank 5 Cavia",
-                    "info": "Costs 2 Search Pulses to unlock for the week"
+                    "prereq": "Rang 5 Cavia",
+                    "info": "Coûte 2 Impulsions de Recherche pour débloquer la semaine"
                 },
                 {
                     "id": "weekly_eta",
-                    "text": "Elite Temporal Archimedea: Attempt weekly Elite Temporal Archimedea for high Archon Shard chances (very endgame)",
+                    "text": "Archimedea Temporelle Élite : Tenter l'Archimedea Temporelle Élite hebdomadaire pour de grandes chances d'Éclats d'Archonte (très haut niveau).",
                     "icon": "Kaya_.png",
                     "location": "Höllvania Central Mall",
                     "npc": "Kaya",
-                    "prereq": "Rank 5 The Hex",
-                    "info": "Costs 2 Search Pulses to unlock for the week"
+                    "prereq": "Rang 5 Le Hex",
+                    "info": "Coûte 2 Impulsions de Recherche pour débloquer la semaine"
                 }
             ]
         },
         {
             "id": "weekly_calendar",
-            "text": "1999 Calendar: Complete weekly Calendar tasks.",
+            "text": "Calendrier 1999 : Compléter les tâches hebdomadaires du Calendrier.",
             "icon": "Computer.png",
-            "location": "Base of Operations",
-            "terminal": "POM-2 PC",
-            "prereq": "The Hex"
+            "location": "Base d'opérations",
+            "terminal": "PC POM-2",
+            "prereq": "Le Hex"
         },
         {
             "id": "weekly_invigorations",
-            "text": "Helminth: Use weekly Invigorations.",
+            "text": "Helminth : Utiliser les Revigorations hebdomadaires.",
             "icon": "IconHelminth.png",
-            "location": "Base of Operations",
+            "location": "Base d'opérations",
             "npc": "Helminth",
-            "prereq": "Rank 5 Entrati"
+            "prereq": "Rang 5 Entrati"
         },
         {
             "id": "weekly_descendia",
-            "text": "The Descendia (Normal): Weekly Tower gamemode for various resources.",
+            "text": "La Descendia (Normal) : Mode Tour hebdomadaire pour diverses ressources.",
             "icon": "Heat_d.png",
-            "location": "Dark Refractory (Base of Operations)",
+            "location": "Réfractoire Sombre (Base d'opérations)",
             "terminal": "Navigation"
         },
         {
             "id": "weekly_descendia_sp",
-            "text": "The Descendia (Steel Path): Weekly Tower gamemode for various resources.",
+            "text": "La Descendia (Chemin d'Acier) : Mode Tour hebdomadaire pour diverses ressources.",
             "icon": "Heat_d.png",
-            "location": "Dark Refractory (Base of Operations)",
+            "location": "Réfractoire Sombre (Base d'opérations)",
             "terminal": "Navigation"
         },
         {
             "id": "weekly_vendors",
-            "text": "Vendors",
+            "text": "Vendeurs",
             "icon": "Market.png",
             "isParent": true,
             "subtasks": [
                 {
                     "id": "weekly_iron_wake",
-                    "text": "Paladino: Trade Riven Slivers.",
+                    "text": "Paladino : Échanger des Éclats de Riven.",
                     "icon": "IconOmegaMod256.png",
-                    "location": "Iron Wake, Earth",
+                    "location": "Iron Wake, Terre",
                     "npc": "Paladino",
-                    "prereq": "The Chains of Harrow"
+                    "prereq": "Les Chaînes de Harrow"
                 },
                 {
                     "id": "weekly_yonta",
-                    "text": "Archimedian Yonta: Buy weekly Kuva with Voidplumes.",
+                    "text": "Archimediane Yonta : Acheter du Kuva hebdomadaire contre des Plumevides.",
                     "icon": "Yonta.png",
                     "location": "Chrysalith, Zariman",
                     "npc": "Yonta",
-                    "prereq": "Angels of the Zariman"
+                    "prereq": "Les Anges du Zariman"
                 },
                 {
                     "id": "weekly_acridies",
-                    "text": "Acrithis: Check wares and spend Pathos Clamps if desired (Catalysts/Reactors recommended if needed).",
+                    "text": "Acrithis : Vérifier la boutique et dépenser les Agrafes de Pathos si souhaité (Catalyseurs/Réacteurs recommandés si besoin).",
                     "icon": "Acrithis.png",
                     "location": "Duviri/Dormizone",
                     "npc": "Acrithis",
-                    "prereq": "The Duviri Paradox"
+                    "prereq": "Le Paradoxe Duviri"
                 },
                 {
                     "id": "weekly_teshin",
-                    "text": "Teshin (Steel Path): Check Teshin's Steel Essence shop (especially for Umbra Forma rotation every 8 weeks).",
+                    "text": "Teshin (Chemin d'Acier) : Vérifier la boutique d'Essence d'Acier de Teshin (surtout pour la rotation de Forma Umbra toutes les 8 semaines).",
                     "icon": "SteelEssenceIcon.png",
-                    "location": "Any Relay",
+                    "location": "N'importe quel Relais",
                     "npc": "Teshin",
-                    "prereq": "Steel Path unlocked"
+                    "prereq": "Chemin d'Acier débloqué"
                 },
                 {
                     "id": "weekly_bird3",
-                    "text": "Bird 3: Buy the weekly Archon Shard for 30k Cavia Standing.",
+                    "text": "Bird 3 : Acheter l'Éclat d'Archonte hebdomadaire pour 30 000 de réputation Cavia.",
                     "icon": "Bird3.png",
                     "location": "Sanctum Anatomica, Deimos",
                     "npc": "Bird 3",
-                    "prereq": "Rank 5 Cavia"
+                    "prereq": "Rang 5 Cavia"
                 },
                 {
                     "id": "weekly_nightcap",
-                    "text": "Nightcap: Trade Fergolyte for Kuva and Ayatan Sculpture.",
+                    "text": "Nightcap : Échanger du Fergolyte contre du Kuva et une Sculpture Ayatan.",
                     "icon": "MysteryShroom256_d.png",
-                    "location": "Fortuna, Venus",
+                    "location": "Fortuna, Vénus",
                     "npc": "Nightcap",
-                    "prereq": "The New War"
+                    "prereq": "La Nouvelle Guerre"
                 }
             ]
         }
@@ -358,36 +358,36 @@
     "other": [
         {
             "id": "other_baro",
-            "text": "Baro Ki'Teer: Check Baro Ki'Teer's inventory and purchase desired items with Ducats (trade Prime parts for Ducats). <span id=\"baro-countdown-timer\" class=\"baro-countdown\">(Loading...)</span>",
+            "text": "Baro Ki'Teer : Vérifier l'inventaire de Baro Ki'Teer et acheter les objets souhaités avec des Ducats (échanger des pièces Prime contre des Ducats). <span id=\"baro-countdown-timer\" class=\"baro-countdown\">(Chargement...)</span>",
             "icon": "IconPrimeParts.png",
-            "location": "Relay with Symbol",
+            "location": "Relais avec Symbole",
             "npc": "Baro Ki'Teer"
         },
         {
             "id": "other_grandmother_tokens",
-            "text": "Mend the Family: Purchase Family Tokens from Grandmother <span id=\"grandmother_tokens-countdown-timer\" class=\"eight-hour-countdown\">(Loading...)</span>",
+            "text": "Réparer la Famille : Acheter des Jetons de Famille auprès de Grand-Mère <span id=\"grandmother_tokens-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
             "icon": "syndicates/IconEntrati.png",
             "isEightHourTask": true,
             "location": "Necralisk, Deimos",
-            "prereq": "Heart of Deimos"
+            "prereq": "Cœur de Deimos"
         },
         {
             "id": "other_yonta_voidplumes",
-            "text": "Trade for Voidplumes <span id=\"yonta_voidplumes-countdown-timer\" class=\"eight-hour-countdown\">(Loading...)</span>",
+            "text": "Échanger contre des Plumevides <span id=\"yonta_voidplumes-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
             "icon": "Yonta.png",
             "isEightHourTask": true,
             "location": "Chrysalith, Zariman",
             "npc": "Yonta",
-            "prereq": "Angels of the Zariman"
+            "prereq": "Les Anges du Zariman"
         },
         {
             "id": "other_loid_voca",
-            "text": "Trade for Voca <span id=\"loid_voca-countdown-timer\" class=\"eight-hour-countdown\">(Loading...)</span>",
+            "text": "Échanger contre des Voca <span id=\"loid_voca-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
             "icon": "MiniMapCaviaVendor_.png",
             "isEightHourTask": true,
             "location": "Sanctum Anatomica, Deimos",
             "npc": "Loid",
-            "prereq": "Whispers in the Walls"
+            "prereq": "Murmures dans les Murs"
         }
     ]
 }
