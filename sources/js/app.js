@@ -66,7 +66,8 @@ let checklistData = {
     manuallyHiddenSections: {},
     lastEightHourResets: {},
     notificationPreferences: {},
-    notificationsSent: {}
+    notificationsSent: {},
+    customTasks: { daily: [], weekly: [] }
 };
 
 let currentTheme = 'dark';
@@ -732,6 +733,11 @@ function createChecklistItem(task, isChecked, isSubtask = false) {
             saveData();
         });
     }
+    const sectionEl = listItem.closest('section');
+    if (sectionEl) {
+        const sec = sectionEl.id.includes('daily') ? 'daily' : sectionEl.id.includes('weekly') ? 'weekly' : null;
+        if (sec) renderCustomTaskControls(listItem, task, sec);
+    }
     return listItem;
 }
 
@@ -757,6 +763,66 @@ function populateSection(sectionElement, taskList, progress) {
     if (sectionElement.parentElement && sectionElement.parentElement.id) {
         updateSectionControls(sectionElement.parentElement.id);
     }
+}
+
+function addCustomTaskUI(section) {
+    const input = document.getElementById(`custom-task-input-${section}`);
+    if (!input) return;
+    const label = input.value.trim();
+    if (!label) return;
+
+    const newTask = {
+        id: `custom_${section}_${Date.now()}`,
+        text: label
+    };
+
+    checklistData.customTasks[section].push(newTask);
+    checklistData.progress[newTask.id] = false;
+    saveData(false);
+
+    const listEl = section === 'daily' ? dailyList : weeklyList;
+    const allTasks = section === 'daily'
+        ? [...tasks.daily, ...checklistData.customTasks.daily]
+        : [...tasks.weekly, ...checklistData.customTasks.weekly];
+    const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
+
+    populateSection(listEl, allTasks, checklistData.progress);
+    updateSectionControls(sectionId);
+    input.value = '';
+}
+
+function deleteCustomTask(taskId, section) {
+    checklistData.customTasks[section] = checklistData.customTasks[section].filter(t => t.id !== taskId);
+    delete checklistData.progress[taskId];
+    saveData(false);
+
+    const listEl = section === 'daily' ? dailyList : weeklyList;
+    const allTasks = section === 'daily'
+        ? [...tasks.daily, ...checklistData.customTasks.daily]
+        : [...tasks.weekly, ...checklistData.customTasks.weekly];
+    const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
+
+    populateSection(listEl, allTasks, checklistData.progress);
+    updateSectionControls(sectionId);
+}
+
+function renderCustomTaskControls(listItem, task, section) {
+    const isCustom = task.id.startsWith('custom_');
+    if (!isCustom) return;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('hide-task-btn');
+    deleteBtn.setAttribute('aria-label', `Supprimer la tâche : ${task.text}`);
+    deleteBtn.title = `Supprimer cette tâche`;
+    deleteBtn.innerHTML = '✕';
+    deleteBtn.style.fontSize = '12px';
+    deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deleteCustomTask(task.id, section);
+    });
+
+    const controls = listItem.querySelector('.flex.items-center.ml-auto');
+    if (controls) controls.prepend(deleteBtn);
 }
 
 function resetSpecificButtonState(buttonElement, defaultText, stateKey) {
@@ -966,6 +1032,7 @@ function loadAndInitializeApp() {
                 checklistData.lastEightHourResets = parsedData.lastEightHourResets || {};
                 checklistData.notificationPreferences = parsedData.notificationPreferences || {};
                 checklistData.notificationsSent = parsedData.notificationsSent || {};
+                checklistData.customTasks = parsedData.customTasks || { daily: [], weekly: [] };
             } else { console.warn("Invalid data format found in localStorage. Starting fresh."); }
         } catch (e) {
             console.error("Error parsing saved data:", e);
@@ -979,8 +1046,8 @@ function loadAndInitializeApp() {
     if (countdownInterval) clearInterval(countdownInterval);
     countdownInterval = setInterval(displayLocalResetTimes, 1000);
 
-    populateSection(dailyList, tasks.daily, checklistData.progress);
-    populateSection(weeklyList, tasks.weekly, checklistData.progress);
+    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress);
+    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress);
     populateSection(otherList, tasks.other, checklistData.progress);
     updateLastSavedDisplay(checklistData.lastSaved);
 
