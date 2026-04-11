@@ -10,7 +10,7 @@ process.env.VITE_GIT_COMMIT_HASH = execSync("git rev-parse HEAD").toString().tri
 
 export default defineConfig(({ mode }) => ({
     root: "sources",
-    base: "/Task-Checklist/",
+    base: "/warframe-tasklist/",
 
     plugins: [
         createHtmlPlugin({
