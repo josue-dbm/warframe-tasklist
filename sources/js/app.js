@@ -784,7 +784,7 @@ function addCustomTaskUI(section) {
         : [...tasks.weekly, ...checklistData.customTasks.weekly];
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
 
-    populateSection(listEl, allTasks, checklistData.progress);
+    populateSection(listEl, allTasks, checklistData.progress, section);
     updateSectionControls(sectionId);
     input.value = '';
 }
@@ -800,7 +800,7 @@ function deleteCustomTask(taskId, section) {
         : [...tasks.weekly, ...checklistData.customTasks.weekly];
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
 
-    populateSection(listEl, allTasks, checklistData.progress);
+    populateSection(listEl, allTasks, checklistData.progress, section);
     updateSectionControls(sectionId);
 }
 
