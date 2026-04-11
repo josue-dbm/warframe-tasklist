@@ -1145,4 +1145,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("A critical error occurred during application startup. Please check the console.");
         }
     }
+    window.addCustomTaskUI = addCustomTaskUI;
 });
