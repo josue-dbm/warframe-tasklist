@@ -733,11 +733,6 @@ function createChecklistItem(task, isChecked, isSubtask = false) {
             saveData();
         });
     }
-    const sectionEl = listItem.closest('section');
-    if (sectionEl) {
-        const sec = sectionEl.id.includes('daily') ? 'daily' : sectionEl.id.includes('weekly') ? 'weekly' : null;
-        if (sec) renderCustomTaskControls(listItem, task, sec);
-    }
     return listItem;
 }
 
@@ -749,7 +744,7 @@ function makeInfoLineItem(task, prop, iconToolTip, icon) {
     }
 }
 
-function populateSection(sectionElement, taskList, progress) {
+function populateSection(sectionElement, taskList, progress, sectionKey = null) {
     if (!sectionElement) {
         console.error("Section element not found for population:", sectionElement);
         return;
@@ -758,6 +753,9 @@ function populateSection(sectionElement, taskList, progress) {
     taskList.forEach(task => {
         const isChecked = progress[task.id] || false;
         const listItem = createChecklistItem(task, isChecked);
+        if (sectionKey && task.id.startsWith('custom_')) {
+            renderCustomTaskControls(listItem, task, sectionKey);
+        }
         sectionElement.appendChild(listItem);
     });
     if (sectionElement.parentElement && sectionElement.parentElement.id) {
@@ -973,8 +971,8 @@ function unhideAllAction() {
     document.querySelectorAll('.task-item.hidden-task').forEach(item => item.classList.remove('hidden-task'));
     document.querySelectorAll('section.section-is-hidden-by-user').forEach(section => section.classList.remove('section-is-hidden-by-user'));
 
-    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress);
-    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress);
+    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress, 'daily');
+    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
     ['daily-tasks-section', 'weekly-tasks-section', 'other-tasks-section'].forEach(updateSectionControls);
     console.log("All tasks and sections unhidden.");
@@ -1050,8 +1048,8 @@ function loadAndInitializeApp() {
     if (countdownInterval) clearInterval(countdownInterval);
     countdownInterval = setInterval(displayLocalResetTimes, 1000);
 
-    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress);
-    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress);
+    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress, 'daily');
+    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
     updateLastSavedDisplay(checklistData.lastSaved);
 
