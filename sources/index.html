@@ -74,6 +74,10 @@
                 </h2>
                 <div id="daily-tasks-content" class="section-content">
                     <ul class="list-none pl-0 mt-2"></ul>
+                    <div class="custom-task-form" style="display:flex;gap:8px;padding:8px 0 4px;align-items:center;">
+                        <input id="custom-task-input-daily" type="text" placeholder="Ajouter une tâche quotidienne..." style="flex:1;padding:6px 10px;border-radius:6px;border:1px solid #555;background:transparent;color:inherit;font-size:14px;">
+                        <button onclick="window.addCustomTaskUI('daily')" style="padding:6px 14px;border-radius:6px;border:1px solid #555;background:transparent;color:inherit;cursor:pointer;font-size:14px;">+ Ajouter</button>
+                    </div>
                 </div>
             </section>
 
@@ -87,6 +91,10 @@
                 </h2>
                 <div id="weekly-tasks-content" class="section-content">
                     <ul class="list-none pl-0 mt-2"></ul>
+                    <div class="custom-task-form" style="display:flex;gap:8px;padding:8px 0 4px;align-items:center;">
+                        <input id="custom-task-input-weekly" type="text" placeholder="Ajouter une tâche hebdomadaire..." style="flex:1;padding:6px 10px;border-radius:6px;border:1px solid #555;background:transparent;color:inherit;font-size:14px;">
+                        <button onclick="window.addCustomTaskUI('weekly')" style="padding:6px 14px;border-radius:6px;border:1px solid #555;background:transparent;color:inherit;cursor:pointer;font-size:14px;">+ Ajouter</button>
+                    </div>
                 </div>
             </section>
 
