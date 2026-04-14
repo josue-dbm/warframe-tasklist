@@ -1100,7 +1100,7 @@ function loadAndInitializeApp() {
             const newDefault = final.filter(t => !t.id.startsWith('custom_'));
             const newCustom = final.filter(t => t.id.startsWith('custom_'));
             if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...newDefault);
-            else tasks.weekly.splice(0, tasks.weekly.length, ...newCustom);
+            else tasks.weekly.splice(0, tasks.weekly.length, ...newDefault);
             checklistData.customTasks[sectionKey] = newCustom;
         }
     });
