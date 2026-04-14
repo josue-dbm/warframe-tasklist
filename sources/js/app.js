@@ -838,6 +838,7 @@ function initSortable(listElement, sectionKey) {
 
             const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
             const customTasks = checklistData.customTasks[sectionKey];
+            console.log(`[order] customTasks for ${sectionKey}:`, checklistData.customTasks[sectionKey]);
             const allTasks = [...defaultTasks, ...customTasks];
 
             const reordered = newOrder
