@@ -21,13 +21,13 @@
         },
         {
             "id": "daily_syndicate_gain",
-            "text": "Syndicats de faction : Atteindre le plafond de réputation quotidien avec vos Syndicat(s) pledgés.",
+            "text": "Syndicats de faction : Atteindre le plafond de réputation quotidien avec vos Syndicat(s).",
             "icon": "ReputationSmall.png",
             "info": "Gagnez de l'affinité dans n'importe quelle mission pour augmenter la réputation de faction"
         },
         {
             "id": "daily_syndicate_spend",
-            "text": "Syndicats de faction : Si la réputation est pleine, la dépenser (packs de Reliques, packs de Vosfor, etc.).",
+            "text": "Syndicats de faction : Dépenser la réputation si pleine (packs de Reliques, packs de Vosfor, etc.).",
             "icon": "ReputationSmall.png",
             "location": "Base d'opérations/N'importe quel Relais",
             "terminal": "Syndicats"
@@ -117,13 +117,6 @@
             ]
         },
         {
-            "id": "daily_dark_sector",
-            "text": "Mission Secteur Sombre (Début de jeu) : Compléter une mission Secteur Sombre en premier pour doubler les crédits (si nécessaire et avant l'Index).",
-            "icon": "IconInfested.png",
-            "location": "Base d'opérations",
-            "terminal": "Navigation"
-        },
-        {
             "id": "daily_sortie",
             "text": "Sortie : Compléter les 3 missions de Sortie quotidiennes.",
             "icon": "Sortie.png",
@@ -139,9 +132,9 @@
         },
         {
             "id": "daily_steel_path",
-            "text": "Incursions Chemin d'Acier : Compléter les missions quotidiennes du Chemin d'Acier pour obtenir de l'Essence d'Acier.",
+            "text": "Incursions Route de l'Acier : Compléter les missions quotidiennes de la Route de l'Acier pour obtenir de l'Essence d'Acier.",
             "icon": "SteelEssenceIcon.png",
-            "prereq": "Chemin d'Acier débloqué"
+            "prereq": "Route de l'Acier débloqué"
         },
         {
             "id": "daily_vendors",
@@ -151,7 +144,7 @@
             "subtasks": [
                 {
                     "id": "daily_acrithis",
-                    "text": "Acrithis : Vérifier l'offre quotidienne d'Arcanes et de Captura.",
+                    "text": "Acrithis : Vérifier l'offre quotidienne d'Arcanes.",
                     "icon": "Acrithis.png",
                     "location": "Duviri/Dormizone",
                     "npc": "Acrithis"
@@ -166,11 +159,11 @@
                 },
                 {
                     "id": "daily_marie",
-                    "text": "Marie : Acheter des mods Opérateur et amp.",
+                    "text": "Marie : Acheter des mods Opérateur et Amplificateur.",
                     "icon": "Wisp.png",
                     "location": "La Cathédrale (Sanctum Anatomica, Deimos)",
                     "npc": "Marie",
-                    "prereq": "La Vieille Paix"
+                    "prereq": "L'Ancienne Paix"
                 }
             ]
         }
@@ -178,12 +171,12 @@
     "weekly": [
         {
             "id": "weekly_nightwave_complete",
-            "text": "Nightwave : Compléter les missions Nightwave hebdomadaires pertinentes.",
+            "text": "Ondes Nocturnes : Compléter les missions des Ondes Nocturnes hebdomadaires pertinentes.",
             "icon": "NightwaveIconSimple.png"
         },
         {
             "id": "weekly_nightwave_spend",
-            "text": "Nightwave (Dépenser) : Dépenser les crédits Nightwave si nécessaire (mods d'Aura, Catalyseurs/Réacteurs, etc.).",
+            "text": "Ondes Nocturnes : Dépenser les jetons des Ondes Nocturnes si nécessaire (mods d'Aura, Catalyseurs/Réacteurs, etc.).",
             "icon": "NightwaveIconSimple.png"
         },
         {
@@ -211,7 +204,7 @@
         },
         {
             "id": "weekly_archon_hunt",
-            "text": "Chasse à l'Archonte : Compléter la Chasse à l'Archonte hebdomadaire pour un Éclat d'Archonte garanti.",
+            "text": "Chasse aux Archontes : Compléter la Chasse aux Archontes hebdomadaire.",
             "icon": "IconNarmer.png",
             "location": "Base d'opérations",
             "terminal": "Navigation",
@@ -219,7 +212,7 @@
         },
         {
             "id": "weekly_duviri_circuit",
-            "text": "Circuit Duviri (Normal) : Vérifier les options de Warframe hebdomadaires et faire le Circuit si souhaité.",
+            "text": "Circuit Duviri (Normal) : Vérifier les récompenses de Warframe hebdomadaires et faire le Circuit si souhaité.",
             "icon": "IconDuviriCategory256.png",
             "location": "Base d'opérations/Dormizone",
             "terminal": "Navigation",
@@ -227,21 +220,21 @@
         },
         {
             "id": "weekly_duviri_circuit_sp",
-            "text": "Circuit Duviri (Chemin d'Acier) : Vérifier les Adaptateurs Incarnon hebdomadaires et faire le Circuit si souhaité.",
+            "text": "Circuit Duviri (Route de l'Acier) : Vérifier les Adaptateurs Incarnon hebdomadaires et faire le Circuit si souhaité.",
             "icon": "IconDuviriCategory256.png",
             "location": "Base d'opérations/Dormizone",
             "terminal": "Navigation",
-            "prereq": "Chemin d'Acier débloqué & Le Paradoxe Duviri"
+            "prereq": "Route de l'Acier débloqué & Le Paradoxe Duviri"
         },
         {
             "id": "weekly_search_pulses",
-            "text": "Impulsions de Recherche : Utiliser les 5 impulsions hebdomadaires sur les Netracells et Archimedeas.",
+            "text": "Impulsions de Recherche : Utiliser les 5 impulsions hebdomadaires sur les Netracells et Archimedées.",
             "icon": "MagnifyingGlassIcon.png",
             "isParent": true,
             "subtasks": [
                 {
                     "id": "weekly_netracells",
-                    "text": "Netracells : Compléter jusqu'à 5 missions Netracell hebdomadaires pour des chances d'obtenir des Éclats d'Archonte.",
+                    "text": "Netracells : Compléter jusqu'à 5 missions Netracell hebdomadaires pour obtenir des Fragments d'Archonte.",
                     "icon": "NetraRequiemIcon.png",
                     "location": "Sanctum Anatomica, Deimos",
                     "npc": "Tagfer",
@@ -250,7 +243,7 @@
                 },
                 {
                     "id": "weekly_eda",
-                    "text": "Archimedea Profonde Élite : Tenter l'Archimedea Profonde Élite hebdomadaire pour de grandes chances d'Éclats d'Archonte (très haut niveau).",
+                    "text": "Archimedée Profonde Élite : Tenter l'Archimedée Profonde Élite hebdomadaire pour obtenir des Fragments d'Archonte.",
                     "icon": "Necraloid.png",
                     "location": "Sanctum Anatomica, Deimos",
                     "npc": "Necraloid",
@@ -259,7 +252,7 @@
                 },
                 {
                     "id": "weekly_eta",
-                    "text": "Archimedea Temporelle Élite : Tenter l'Archimedea Temporelle Élite hebdomadaire pour de grandes chances d'Éclats d'Archonte (très haut niveau).",
+                    "text": "Archimedée Temporelle Élite : Tenter l'Archimedée Temporelle Élite hebdomadaire pour obtenir des Fragments d'Archonte.",
                     "icon": "Kaya_.png",
                     "location": "Höllvania Central Mall",
                     "npc": "Kaya",
@@ -278,7 +271,7 @@
         },
         {
             "id": "weekly_invigorations",
-            "text": "Helminth : Utiliser les Revigorations hebdomadaires.",
+            "text": "Helminth : Utiliser les Dynamisations hebdomadaires.",
             "icon": "IconHelminth.png",
             "location": "Base d'opérations",
             "npc": "Helminth",
@@ -286,16 +279,16 @@
         },
         {
             "id": "weekly_descendia",
-            "text": "La Descendia (Normal) : Mode Tour hebdomadaire pour diverses ressources.",
+            "text": "La Descendia (Normal) : Compléter la Descendia (Normal) pour obtenir différentes ressources.",
             "icon": "Heat_d.png",
-            "location": "Réfractoire Sombre (Base d'opérations)",
+            "location": "Ténèbres Réfractaires (Base d'opérations)",
             "terminal": "Navigation"
         },
         {
             "id": "weekly_descendia_sp",
-            "text": "La Descendia (Chemin d'Acier) : Mode Tour hebdomadaire pour diverses ressources.",
+            "text": "La Descendia (Route de l' Acier) : Compléter la Descendia (Route de l'Acier) pour obtenir différentes ressources.",
             "icon": "Heat_d.png",
-            "location": "Réfractoire Sombre (Base d'opérations)",
+            "location": "Ténèbres Réfractaires (Base d'opérations)",
             "terminal": "Navigation"
         },
         {
@@ -306,7 +299,7 @@
             "subtasks": [
                 {
                     "id": "weekly_iron_wake",
-                    "text": "Paladino : Échanger des Éclats de Riven.",
+                    "text": "Paladino : Échanger les Brisures Riven.",
                     "icon": "IconOmegaMod256.png",
                     "location": "Iron Wake, Terre",
                     "npc": "Paladino",
@@ -314,15 +307,15 @@
                 },
                 {
                     "id": "weekly_yonta",
-                    "text": "Archimediane Yonta : Acheter du Kuva hebdomadaire contre des Plumevides.",
+                    "text": "Archimédienne Yonta : Acheter du Kuva hebdomadaire contre des Plumes du Néant Rémige.",
                     "icon": "Yonta.png",
-                    "location": "Chrysalith, Zariman",
+                    "location": "Chrysalithe, Zariman",
                     "npc": "Yonta",
                     "prereq": "Les Anges du Zariman"
                 },
                 {
                     "id": "weekly_acridies",
-                    "text": "Acrithis : Vérifier la boutique et dépenser les Agrafes de Pathos si souhaité (Catalyseurs/Réacteurs recommandés si besoin).",
+                    "text": "Acrithis : Vérifier la boutique et dépenser les Pinces de Pathos si souhaité.",
                     "icon": "Acrithis.png",
                     "location": "Duviri/Dormizone",
                     "npc": "Acrithis",
@@ -330,26 +323,26 @@
                 },
                 {
                     "id": "weekly_teshin",
-                    "text": "Teshin (Chemin d'Acier) : Vérifier la boutique d'Essence d'Acier de Teshin (surtout pour la rotation de Forma Umbra toutes les 8 semaines).",
+                    "text": "Teshin (Route de l'Acier) : Vérifier la boutique de Teshin.",
                     "icon": "SteelEssenceIcon.png",
                     "location": "N'importe quel Relais",
                     "npc": "Teshin",
-                    "prereq": "Chemin d'Acier débloqué"
+                    "prereq": "Route de l'Acier débloqué"
                 },
                 {
                     "id": "weekly_bird3",
-                    "text": "Bird 3 : Acheter l'Éclat d'Archonte hebdomadaire pour 30 000 de réputation Cavia.",
+                    "text": "Oiseau-3 : Acheter le Fragment d'Archonte hebdomadaire pour 30 000 de réputation Cavia.",
                     "icon": "Bird3.png",
                     "location": "Sanctum Anatomica, Deimos",
-                    "npc": "Bird 3",
+                    "npc": "Oiseau-3",
                     "prereq": "Rang 5 Cavia"
                 },
                 {
                     "id": "weekly_nightcap",
-                    "text": "Nightcap : Échanger du Fergolyte contre du Kuva et une Sculpture Ayatan.",
+                    "text": "Bonne-Nuit : Échanger du Fergolyte contre du Kuva et/ou une Sculpture Ayatan.",
                     "icon": "MysteryShroom256_d.png",
                     "location": "Fortuna, Vénus",
-                    "npc": "Nightcap",
+                    "npc": "Bonne-Nuit",
                     "prereq": "La Nouvelle Guerre"
                 }
             ]
@@ -358,14 +351,14 @@
     "other": [
         {
             "id": "other_baro",
-            "text": "Baro Ki'Teer : Vérifier l'inventaire de Baro Ki'Teer et acheter les objets souhaités avec des Ducats (échanger des pièces Prime contre des Ducats). <span id=\"baro-countdown-timer\" class=\"baro-countdown\">(Chargement...)</span>",
+            "text": "Baro Ki'Teer : Vérifier l'inventaire de Baro Ki'Teer et acheter les objets souhaités avec des Ducats. <span id=\"baro-countdown-timer\" class=\"baro-countdown\">(Chargement...)</span>",
             "icon": "IconPrimeParts.png",
             "location": "Relais avec Symbole",
             "npc": "Baro Ki'Teer"
         },
         {
             "id": "other_grandmother_tokens",
-            "text": "Réparer la Famille : Acheter des Jetons de Famille auprès de Grand-Mère <span id=\"grandmother_tokens-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
+            "text": "Rassembler la Famille : Acheter des Jetons de Famille auprès de Grand-Mère <span id=\"grandmother_tokens-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
             "icon": "syndicates/IconEntrati.png",
             "isEightHourTask": true,
             "location": "Necralisk, Deimos",
@@ -373,10 +366,10 @@
         },
         {
             "id": "other_yonta_voidplumes",
-            "text": "Échanger contre des Plumevides <span id=\"yonta_voidplumes-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
+            "text": "Échanger contre des Plumes du Néant <span id=\"yonta_voidplumes-countdown-timer\" class=\"eight-hour-countdown\">(Chargement...)</span>",
             "icon": "Yonta.png",
             "isEightHourTask": true,
-            "location": "Chrysalith, Zariman",
+            "location": "Chrysalithe, Zariman",
             "npc": "Yonta",
             "prereq": "Les Anges du Zariman"
         },
