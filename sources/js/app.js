@@ -780,9 +780,7 @@ function addCustomTaskUI(section) {
     saveData(false);
 
     const listEl = section === 'daily' ? dailyList : weeklyList;
-    const allTasks = section === 'daily'
-        ? [...tasks.daily, ...checklistData.customTasks.daily]
-        : [...tasks.weekly, ...checklistData.customTasks.weekly];
+    const allTasks = section === 'daily' ? tasks.daily : tasks.weekly;
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
 
     populateSection(listEl, allTasks, checklistData.progress, section);
@@ -796,9 +794,7 @@ function deleteCustomTask(taskId, section) {
     saveData(false);
 
     const listEl = section === 'daily' ? dailyList : weeklyList;
-    const allTasks = section === 'daily'
-        ? [...tasks.daily, ...checklistData.customTasks.daily]
-        : [...tasks.weekly, ...checklistData.customTasks.weekly];
+    const allTasks = section === 'daily' ? tasks.daily : tasks.weekly;
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
 
     populateSection(listEl, allTasks, checklistData.progress, section);
@@ -934,11 +930,11 @@ function resetSection(section) {
     }
     let taskList, sectionElement, sectionElementId;
     if (section === "daily") {
-        taskList = [...tasks.daily, ...checklistData.customTasks.daily];
+        taskList = tasks.daily;
         sectionElement = dailyList;
         sectionElementId = 'daily-tasks-section';
     } else if (section === "weekly") {
-        taskList = [...tasks.weekly, ...checklistData.customTasks.weekly];
+        taskList = tasks.weekly;
         sectionElement = weeklyList;
         sectionElementId = 'weekly-tasks-section';
     }
@@ -1006,8 +1002,8 @@ function unhideAllAction() {
     document.querySelectorAll('.task-item.hidden-task').forEach(item => item.classList.remove('hidden-task'));
     document.querySelectorAll('section.section-is-hidden-by-user').forEach(section => section.classList.remove('section-is-hidden-by-user'));
 
-    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress, 'daily');
-    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress, 'weekly');
+    populateSection(dailyList, tasks.daily, checklistData.progress, 'daily');
+    populateSection(weeklyList, tasks.weekly, checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
     ['daily-tasks-section', 'weekly-tasks-section', 'other-tasks-section'].forEach(updateSectionControls);
     console.log("All tasks and sections unhidden.");
@@ -1085,31 +1081,30 @@ function loadAndInitializeApp() {
     if (countdownInterval) clearInterval(countdownInterval);
     countdownInterval = setInterval(displayLocalResetTimes, 1000);
 
-['daily', 'weekly'].forEach(sectionKey => {
-    if (checklistData.taskOrder[sectionKey]) {
-        console.log(`[order] Restoring order for ${sectionKey}:`, checklistData.taskOrder[sectionKey]);
-        const order = checklistData.taskOrder[sectionKey];
-        const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
-        const customTasks = checklistData.customTasks[sectionKey];
-        const allTasks = [...defaultTasks, ...customTasks];
-        console.log(`[order] allTasks IDs:`, allTasks.map(t => t.id));
-        const reordered = order
-            .map(id => allTasks.find(t => t.id === id))
-            .filter(Boolean);
-        const missing = allTasks.filter(t => !order.includes(t.id));
-        const final = [...reordered, ...missing];
-        const newDefault = final.filter(t => !t.id.startsWith('custom_'));
-        const newCustom = final.filter(t => t.id.startsWith('custom_'));
-        if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...newDefault);
-        else tasks.weekly.splice(0, tasks.weekly.length, ...newDefault);
-        checklistData.customTasks[sectionKey] = newCustom;
-        console.log(`[order] tasks.${sectionKey} after splice:`, (sectionKey === 'daily' ? tasks.daily : tasks.weekly).map(t => t.id));
-    } else {
-        console.log(`[order] No saved order for ${sectionKey}`);
-    }
-});
-    populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress, 'daily');
-    populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress, 'weekly');
+    ['daily', 'weekly'].forEach(sectionKey => {
+        if (checklistData.taskOrder[sectionKey]) {
+            const order = checklistData.taskOrder[sectionKey];
+            const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
+            const customTasks = checklistData.customTasks[sectionKey];
+            const allTasks = [...defaultTasks, ...customTasks];
+    
+            const reordered = order
+                .map(id => allTasks.find(t => t.id === id))
+                .filter(Boolean);
+            const missing = allTasks.filter(t => !order.includes(t.id));
+            const final = [...reordered, ...missing];
+    
+            // ✅ On splice tasks.daily/weekly avec TOUT (default + custom mélangés)
+            if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...final);
+            else tasks.weekly.splice(0, tasks.weekly.length, ...final);
+    
+            // ✅ On met aussi à jour customTasks dans le bon ordre
+            checklistData.customTasks[sectionKey] = final.filter(t => t.id.startsWith('custom_'));
+        }
+    });
+    
+    populateSection(dailyList, tasks.daily, checklistData.progress, 'daily');
+    populateSection(weeklyList, tasks.weekly, checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
     initSortable(dailyList, 'daily');
     initSortable(weeklyList, 'weekly');
