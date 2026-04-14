@@ -832,32 +832,28 @@ function initSortable(listElement, sectionKey) {
         onEnd: function() {
             const newOrder = [];
             listElement.querySelectorAll('li.task-item').forEach(li => {
-                const id = li.querySelector('input[type="checkbox"]').id;
-                newOrder.push(id);
+                const checkbox = li.querySelector('input[type="checkbox"]');
+                if (checkbox) newOrder.push(checkbox.id);
             });
-
+            
             const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
             const customTasks = checklistData.customTasks[sectionKey];
-            console.log(`[order] customTasks for ${sectionKey}:`, checklistData.customTasks[sectionKey]);
             const allTasks = [...defaultTasks, ...customTasks];
-
+            
             const reordered = newOrder
                 .map(id => allTasks.find(t => t.id === id))
                 .filter(Boolean);
-
+            
             const newDefault = reordered.filter(t => !t.id.startsWith('custom_'));
             const newCustom = reordered.filter(t => t.id.startsWith('custom_'));
-
-            if (sectionKey === 'daily') {
-                tasks.daily.splice(0, tasks.daily.length, ...newDefault);
-            } else {
-                tasks.weekly.splice(0, tasks.weekly.length, ...newDefault);
-            }
+            
+            if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...newDefault);
+            else tasks.weekly.splice(0, tasks.weekly.length, ...newDefault);
+            
             checklistData.customTasks[sectionKey] = newCustom;
             checklistData.taskOrder = checklistData.taskOrder || {};
-            checklistData.taskOrder[sectionKey] = newOrder;
+            checklistData.taskOrder[sectionKey] = newOrder; // ← contient maintenant aussi les IDs custom
             saveData(false);
-            console.log(`[sortable] Saving order for ${sectionKey}:`, newOrder);
         }
     });
 }
