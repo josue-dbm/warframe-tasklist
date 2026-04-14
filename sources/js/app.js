@@ -1073,6 +1073,7 @@ function loadAndInitializeApp() {
                 checklistData.notificationPreferences = parsedData.notificationPreferences || {};
                 checklistData.notificationsSent = parsedData.notificationsSent || {};
                 checklistData.customTasks = parsedData.customTasks || { daily: [], weekly: [] };
+                console.log('[load] customTasks:', checklistData.customTasks);
                 checklistData.taskOrder = parsedData.taskOrder || {};
             } else { console.warn("Invalid data format found in localStorage. Starting fresh."); }
         } catch (e) {
