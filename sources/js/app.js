@@ -2,6 +2,7 @@
 console.log(`vite mode: ${import.meta.env.MODE}`);
 
 import * as svgIcons from "./icons.js";
+import Sortable from 'https://cdn.jsdelivr.net/npm/sortablejs@1.15.3/modular/sortable.esm.js';
 
 // --- Configuration ---
 // Array of background div IDs (must match IDs in sources/index.html)
@@ -823,6 +824,42 @@ function renderCustomTaskControls(listItem, task, section) {
     if (controls) controls.prepend(deleteBtn);
 }
 
+function initSortable(listElement, sectionKey) {
+    Sortable.create(listElement, {
+        animation: 150,
+        handle: '.task-item',
+        filter: '.custom-task-form',
+        onEnd: function() {
+            const newOrder = [];
+            listElement.querySelectorAll('li.task-item').forEach(li => {
+                const id = li.querySelector('input[type="checkbox"]').id;
+                newOrder.push(id);
+            });
+
+            const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
+            const customTasks = checklistData.customTasks[sectionKey];
+            const allTasks = [...defaultTasks, ...customTasks];
+
+            const reordered = newOrder
+                .map(id => allTasks.find(t => t.id === id))
+                .filter(Boolean);
+
+            const newDefault = reordered.filter(t => !t.id.startsWith('custom_'));
+            const newCustom = reordered.filter(t => t.id.startsWith('custom_'));
+
+            if (sectionKey === 'daily') {
+                tasks.daily.splice(0, tasks.daily.length, ...newDefault);
+            } else {
+                tasks.weekly.splice(0, tasks.weekly.length, ...newDefault);
+            }
+            checklistData.customTasks[sectionKey] = newCustom;
+            checklistData.taskOrder = checklistData.taskOrder || {};
+            checklistData.taskOrder[sectionKey] = newOrder;
+            saveData(false);
+        }
+    });
+}
+
 function resetSpecificButtonState(buttonElement, defaultText, stateKey) {
     if (!buttonElement || !confirmState[stateKey]) return;
     clearTimeout(confirmState[stateKey].timeout);
@@ -1035,6 +1072,7 @@ function loadAndInitializeApp() {
                 checklistData.notificationPreferences = parsedData.notificationPreferences || {};
                 checklistData.notificationsSent = parsedData.notificationsSent || {};
                 checklistData.customTasks = parsedData.customTasks || { daily: [], weekly: [] };
+                checklistData.taskOrder = parsedData.taskOrder || {};
             } else { console.warn("Invalid data format found in localStorage. Starting fresh."); }
         } catch (e) {
             console.error("Error parsing saved data:", e);
@@ -1048,9 +1086,29 @@ function loadAndInitializeApp() {
     if (countdownInterval) clearInterval(countdownInterval);
     countdownInterval = setInterval(displayLocalResetTimes, 1000);
 
+    ['daily', 'weekly'].forEach(sectionKey => {
+        if (checklistData.taskOrder[sectionKey]) {
+            const order = checklistData.taskOrder[sectionKey];
+            const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
+            const customTasks = checklistData.customTasks[sectionKey];
+            const allTasks = [...defaultTasks, ...customTasks];
+            const reordered = order
+                .map(id => allTasks.find(t => t.id === id))
+                .filter(Boolean);
+            const missing = allTasks.filter(t => !order.includes(t.id));
+            const final = [...reordered, ...missing];
+            const newDefault = final.filter(t => !t.id.startsWith('custom_'));
+            const newCustom = final.filter(t => t.id.startsWith('custom_'));
+            if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...newDefault);
+            else tasks.weekly.splice(0, tasks.weekly.length, ...newCustom);
+            checklistData.customTasks[sectionKey] = newCustom;
+        }
+    });
     populateSection(dailyList, [...tasks.daily, ...checklistData.customTasks.daily], checklistData.progress, 'daily');
     populateSection(weeklyList, [...tasks.weekly, ...checklistData.customTasks.weekly], checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
+    initSortable(dailyList, 'daily');
+    initSortable(weeklyList, 'weekly');
     updateLastSavedDisplay(checklistData.lastSaved);
 
     ['daily-tasks-section', 'weekly-tasks-section', 'other-tasks-section'].forEach(updateSectionControls);
