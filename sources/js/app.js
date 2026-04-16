@@ -777,13 +777,16 @@ function addCustomTaskUI(section) {
 
     checklistData.customTasks[section].push(newTask);
     checklistData.progress[newTask.id] = false;
+
+    // ✅ Synchroniser tasks.daily/weekly
+    if (section === 'daily') tasks.daily.push(newTask);
+    else tasks.weekly.push(newTask);
+
     saveData(false);
 
     const listEl = section === 'daily' ? dailyList : weeklyList;
-    const allTasks = section === 'daily' ? tasks.daily : tasks.weekly;
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
-
-    populateSection(listEl, allTasks, checklistData.progress, section);
+    populateSection(listEl, section === 'daily' ? tasks.daily : tasks.weekly, checklistData.progress, section);
     updateSectionControls(sectionId);
     input.value = '';
 }
@@ -791,13 +794,16 @@ function addCustomTaskUI(section) {
 function deleteCustomTask(taskId, section) {
     checklistData.customTasks[section] = checklistData.customTasks[section].filter(t => t.id !== taskId);
     delete checklistData.progress[taskId];
+
+    // ✅ Synchroniser tasks.daily/weekly
+    if (section === 'daily') tasks.daily.splice(0, tasks.daily.length, ...tasks.daily.filter(t => t.id !== taskId));
+    else tasks.weekly.splice(0, tasks.weekly.length, ...tasks.weekly.filter(t => t.id !== taskId));
+
     saveData(false);
 
     const listEl = section === 'daily' ? dailyList : weeklyList;
-    const allTasks = section === 'daily' ? tasks.daily : tasks.weekly;
     const sectionId = section === 'daily' ? 'daily-tasks-section' : 'weekly-tasks-section';
-
-    populateSection(listEl, allTasks, checklistData.progress, section);
+    populateSection(listEl, section === 'daily' ? tasks.daily : tasks.weekly, checklistData.progress, section);
     updateSectionControls(sectionId);
 }
 
@@ -905,8 +911,6 @@ function handleResetConfirmation(buttonElement, confirmKey, defaultText, resetAc
 
 function resetAllAction() {
     checklistData.progress = {};
-    checklistData.customTasks.daily.forEach(t => { checklistData.progress[t.id] = false; });
-    checklistData.customTasks.weekly.forEach(t => { checklistData.progress[t.id] = false; });
     localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(checklistData));
 
     const allCheckboxes = document.querySelectorAll('#checklist-container input[type="checkbox"]');
@@ -1066,54 +1070,59 @@ function loadAndInitializeApp() {
                 checklistData.notificationPreferences = parsedData.notificationPreferences || {};
                 checklistData.notificationsSent = parsedData.notificationsSent || {};
                 checklistData.customTasks = parsedData.customTasks || { daily: [], weekly: [] };
-                console.log('[load] customTasks:', checklistData.customTasks);
                 checklistData.taskOrder = parsedData.taskOrder || {};
             } else { console.warn("Invalid data format found in localStorage. Starting fresh."); }
         } catch (e) {
             console.error("Error parsing saved data:", e);
             displayError("Failed to load saved progress. Data might be corrupted.");
-            checklistData = { progress: {}, lastSaved: null, lastDailyReset: null, lastWeeklyReset: null, hiddenTasks: {}, manuallyHiddenSections: {}, lastEightHourResets: {}, notificationPreferences: {}, notificationsSent: {} };
+            checklistData = { progress: {}, lastSaved: null, lastDailyReset: null, lastWeeklyReset: null, hiddenTasks: {}, manuallyHiddenSections: {}, lastEightHourResets: {}, notificationPreferences: {}, notificationsSent: {}, customTasks: { daily: [], weekly: [] }, taskOrder: {} };
         }
     }
 
-    setDailyBackground();
-    displayLocalResetTimes();
-    if (countdownInterval) clearInterval(countdownInterval);
-    countdownInterval = setInterval(displayLocalResetTimes, 1000);
-
+    // Restauration de l'ordre (tasks.daily/weekly incluent les custom tasks)
     ['daily', 'weekly'].forEach(sectionKey => {
         if (checklistData.taskOrder[sectionKey]) {
             const order = checklistData.taskOrder[sectionKey];
             const defaultTasks = sectionKey === 'daily' ? tasks.daily : tasks.weekly;
             const customTasks = checklistData.customTasks[sectionKey];
             const allTasks = [...defaultTasks, ...customTasks];
-    
+
             const reordered = order
                 .map(id => allTasks.find(t => t.id === id))
                 .filter(Boolean);
             const missing = allTasks.filter(t => !order.includes(t.id));
             const final = [...reordered, ...missing];
-    
-            // ✅ On splice tasks.daily/weekly avec TOUT (default + custom mélangés)
+
             if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...final);
             else tasks.weekly.splice(0, tasks.weekly.length, ...final);
-    
-            // ✅ On met aussi à jour customTasks dans le bon ordre
+
             checklistData.customTasks[sectionKey] = final.filter(t => t.id.startsWith('custom_'));
+        } else {
+            // Pas d'ordre sauvegardé : on fusionne quand même les custom tasks dans tasks.daily/weekly
+            const customTasks = checklistData.customTasks[sectionKey];
+            if (customTasks && customTasks.length > 0) {
+                if (sectionKey === 'daily') tasks.daily.splice(0, tasks.daily.length, ...tasks.daily, ...customTasks);
+                else tasks.weekly.splice(0, tasks.weekly.length, ...tasks.weekly, ...customTasks);
+            }
         }
     });
-    
+
+    // Populate les sections
     populateSection(dailyList, tasks.daily, checklistData.progress, 'daily');
     populateSection(weeklyList, tasks.weekly, checklistData.progress, 'weekly');
     populateSection(otherList, tasks.other, checklistData.progress);
     initSortable(dailyList, 'daily');
     initSortable(weeklyList, 'weekly');
     updateLastSavedDisplay(checklistData.lastSaved);
-
     ['daily-tasks-section', 'weekly-tasks-section', 'other-tasks-section'].forEach(updateSectionControls);
 
+    // Timers et auto-resets (maintenant que tasks.daily/weekly sont complets)
+    setDailyBackground();
+    displayLocalResetTimes();
+    if (countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(displayLocalResetTimes, 1000);
 
-    // Setup event listeners
+    // Event listeners
     if (appVersionElement) appVersionElement.textContent = APP_VERSION;
     else console.error("App version element not found!");
 
@@ -1137,7 +1146,6 @@ function loadAndInitializeApp() {
     if (unhideTasksButton) { unhideTasksButton.addEventListener('click', () => handleResetConfirmation(unhideTasksButton, 'unhide', 'Unhide All Tasks', unhideAllAction)); }
     else { console.error("Unhide Tasks button not found!");}
 
-
     if (themeToggleButton) { themeToggleButton.addEventListener('click', handleThemeToggle); }
     else { console.error("Theme toggle button not found!"); }
 
@@ -1155,7 +1163,6 @@ function loadAndInitializeApp() {
     if (menuCloseButton) {
         menuCloseButton.addEventListener('click', toggleMenu);
     } else { console.error("Menu close button not found!"); }
-
 
     sectionToggles.forEach(toggle => {
         toggle.addEventListener('click', handleSectionToggle);
@@ -1176,7 +1183,6 @@ function loadAndInitializeApp() {
             }
         }
     });
-
 
     if (errorCloseButton) {
         errorCloseButton.addEventListener('click', hideError);
